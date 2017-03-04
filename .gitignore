@@ -1,3 +1,10 @@
+
+# Added manually
+old/
+doc_sources/
+recognition/compiled/
+
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

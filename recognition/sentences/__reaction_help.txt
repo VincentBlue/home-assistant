@@ -1,0 +1,27 @@
+Différentes possibilités prises en compte par le cerveau
+(les --> et <-- sont présent pour mieux repérer les signes spéciaux)
+
+phrase comprise-->=<--phrase retournée
+
+-->|<--cette chaîne est au début de la phrase comprise=phrase retournée
+
+cette chaîne est à la fin de la phrase comprise-->|<--=phrase retournée
+
+il y a des mots possibles -->*<-- au milieu=phrase retournée
+
+prise en compte de -->[<--cette variable-->]<--=phrase retournée
+
+-->{<--prise en compte de ce pattern-->}<-- pour la suite de la phrase comprise=phrase retournée
+
+phrase comprise=phrase retournée choix 1-->|<--phrase retournée choix 2
+
+phrase comprise=phrase retournée adaptée à la prononciation-->#<--phrase retournée adaptée à la lecture
+
+phrase comprise=lancements de paramètres-->-><--avant de répondre la phrase retournée
+
+phrase comprise=-->[<--variables-->]<--->utilisées pour la phrase retournée
+
+phrase comprise=-->{<--fonctions-->}<--->utilisées pour la phrase retournée
+
+phrase comprise=
+
