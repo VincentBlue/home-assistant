@@ -64,6 +64,10 @@ class Configuration:
         self.compilation_filelist = []
         self.compiled_files = []
 
+        self.default_voice = config["Load"]["default_voice"]
+
+        self.assistant_name = config["Load"]["assistant_name"]
+
 
     def create_log(self):
 
@@ -75,7 +79,13 @@ class Configuration:
         # Création d'unhangler de logs sur console
         stream_handler = logging.StreamHandler()        
         # Formattage de la sortie
-        formatter = logging.Formatter("%(levelname)-8s -- %(filename)-20s(%(lineno)d) - %(funcName)s() --> %(message)s")
+        levelname = "%(levelname)-8s"
+        filename  = "%(filename)-20s"
+        fileno    = "%(lineno)-4d"
+        funcname  = "%(funcName)-25s"
+        message   = "%(message)s"
+
+        formatter = logging.Formatter(levelname + " -- " + filename + fileno + " - " + funcname + " --> " + message)
         stream_handler.setFormatter(formatter)
         self.log.addHandler(stream_handler)
 

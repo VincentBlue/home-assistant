@@ -17,9 +17,9 @@ class InitHandler:
         self.log = self.config.log
         self.log.debug("Starting Initialisation handler...")
 
-        self.words  = Words()
-        self.init   = Initialisation(self.config, self.words)
-        self.compil = Compilation(self.config, self.init)
+        self.config.words  = Words()
+        self.init          = Initialisation(self.config)
+        self.compil        = Compilation(self.config, self.init)
 
 
 
@@ -45,4 +45,4 @@ class InitHandler:
         self.init.check_correct_arbo()
         self.init.check_files_changes()
         self.compil.compilation()
-        self.compil.convert()
+        self.compil.regex_convert()

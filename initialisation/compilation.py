@@ -14,6 +14,7 @@ class Compilation:
 
 
     def compilation(self):
+        # TODO: Sort sentences by alphabetical order
 
         for item in self.config.compilation_filelist:
 
@@ -73,8 +74,9 @@ class Compilation:
 
                 self.config.compiled_files.append(name_only)
 
-    def convert(self):
-        # Convertir une string lisible en string regex
+
+    def regex_convert(self):
+        # Convert a string in regex pattern
         #TODO: si un mot est un synonyme, alors écrire autant de nouvelles lignes correspondant
 
         for dirpath, dirnames, filenames in os.walk(self.config.textin_path):
@@ -85,7 +87,7 @@ class Compilation:
                 allregex = ""
 
                 for line in content:
-                    regex = "\""
+                    regex = ""
                     if line[0] == "|":
                         regex += "^"
                         line = line[1:]
@@ -104,11 +106,10 @@ class Compilation:
                     if letter == "|":
                         regex = regex + "$"
 
-                    regex += "\""
-
                     allregex += regex + "\n"
 
                 with open(dirpath + fname, "w") as f:
+                    # without final \n
                     f.write(allregex[:-1])
 
 

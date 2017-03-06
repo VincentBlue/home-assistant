@@ -7,4 +7,4 @@ status=Je suis en statut : "[humeur]"
 date={date}->Nous sommes le {date:dayweek} {date:daymonth} {date:monthyear}.|Il me semble que nous sommes {date:dayweek}.|On est en {date:monthyear}, non ?
 penses * snapchat=Avec tout le respect que je vous dois, monsieur, je trouve que cette application est une belle merde !
 hello=bisous
-[status:happy]->|bonjour * , je suis content|=coucou mon beau !
+[status:happy]->|bonjour * je suis content|=coucou mon beau !

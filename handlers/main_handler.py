@@ -21,6 +21,15 @@ class MainHandler:
 
         self.development()
 
+        self.main_loop()
+
+
+    def main_loop(self):
+
+        while True:
+            self.life_handler.manage()
+
+
     def development(self):
 
         print("\n#####DEVELOPEMENT#####\n")
