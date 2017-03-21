@@ -1,3 +1,4 @@
+00NOTFOUND=Je n'ai pas compris
 marion=Je vous zecoute#Je vous écoute|Oui monsieur ?|Oui ?|J'ecoute#J'écoute|Quelle est votre demande ?|Vous avez besoin de quelque chose ?|Plait il ?|Je peux faire quelque chose pour vous ?
 terminer=[status:sleep;count:3]{call:truc;function:chose,machin,autre}->Je passe en mode veille|A plus tard|Kiao#Ciao|Au revoir|A tout a leurre#A tout à l'heure
 coucou=Salut !|Coucou !
@@ -7,4 +8,11 @@ status=Je suis en statut : "[humeur]"
 date={date}->Nous sommes le {date:dayweek} {date:daymonth} {date:monthyear}.|Il me semble que nous sommes {date:dayweek}.|On est en {date:monthyear}, non ?
 penses * snapchat=Avec tout le respect que je vous dois, monsieur, je trouve que cette application est une belle merde !
 hello=bisous
-[status:happy]->|bonjour * je suis content|=coucou mon beau !
+hello=coucou
+|bonjour * je suis content|->[status:happy]=coucou mon beau !
+morose->[status:angry;angrymode:on]{date:3}=Je suis très en colère !
+all->[status:cool;angrymode:off]{date:12}=[status:sleep;count:3]{call:truc;function:chose,machin,autre}->Oui monsieur {date:dayweek} ?|Oui {date:daymonth} ?
+hello=yeah
+hello=yolo
+hello=posey
+pattern->[spec1:value;spec2:value]{func1(args):value;func2(args):value}pattern=[spec1:value;spec2:value]{func1(args);func2(args)}->pattern1[spec]|pattern2{func(args)}

@@ -4,6 +4,7 @@
 from interfaces.listen import Listen
 from interfaces.say import Say
 from reflexion.brain import Brain
+from reflexion.context import Context
 
 class LifeHandler:
     def __init__(self, config):
@@ -22,9 +23,10 @@ class LifeHandler:
 
 
     def load_modules(self):
-        
+
+        self.context = Context(self.config) 
         self.listen = Listen(self.config)
-        self.brain = Brain(self.config)
+        self.brain = Brain(self.config, self.context)
         self.say = Say(self.config)
 
 

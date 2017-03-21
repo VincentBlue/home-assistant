@@ -16,10 +16,9 @@ import eyed3
 class Say:
     def __init__(self, config):
         
-        print("Loading module Say...")
-
         self.config = config
         self.log = self.config.log
+        self.log.info("Loading module Say...")
         self.vocal_synthesis = self.config.vocal_synthesis
 
 

@@ -7,10 +7,9 @@ class Listen:
 
     def __init__(self, config):
 
-        print("Loading module Listen...")
-
         self.config = config
         self.log = self.config.log
+        self.log.info("Loading module Listen...")
         self.ticked = False
         self.vocal_recognition = self.config.vocal_recognition
         self.speech = sr.Recognizer()

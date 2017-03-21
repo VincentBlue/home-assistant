@@ -34,11 +34,18 @@ class MainHandler:
 
         print("\n#####DEVELOPEMENT#####\n")
 
-
-
-
+        """self.print_content(self.config.words.textin)
+        self.print_content(self.config.words.specsin)
+        self.print_content(self.config.words.specsout)
+        self.print_content(self.config.words.textout)"""
 
         #except(KeyboardInterrupt, EOFError, SystemExit):
             #break
 
         print("\n#####DEVELOPEMENT#####\n")
+
+    #dev
+    def print_content(self, dict):
+        print("#############################")
+        for key in dict:
+            print(key)

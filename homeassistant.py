@@ -21,3 +21,7 @@ if __name__ == '__main__':
     print (banner)
                 
     MainHandler()
+
+# Files architecture:
+
+#pattern->[spec1:value;spec2:value]{func1(args):value;func2(args):value}pattern=[spec1:value;spec2:value]{func1(args);func2(args)}->pattern1[spec]|pattern2{func(args)}

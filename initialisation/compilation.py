@@ -14,10 +14,8 @@ class Compilation:
 
 
     def compilation(self):
-        # TODO: Sort sentences by alphabetical order
 
         for item in self.config.compilation_filelist:
-
             if "sentences" in item and not "__" in item:
                 self.log.info("Compiling file: " + item)
 
@@ -28,7 +26,9 @@ class Compilation:
                 all_textin   = ""
                 all_textout  = ""
                 all_specsout = ""
+                content = sorted(content, key=str.lower)
 
+                buffer = [0, None]
                 for sentence in content:
                     sentence = sentence[:-1]
                     specsin  = ""
@@ -39,12 +39,22 @@ class Compilation:
                     textout  = sentence[1]
                     if "->" in textin:
                         sentence = textin.split("->")
-                        specsin  = sentence[0]
-                        textin   = sentence[1]
+                        textin   = sentence[0]
+                        specsin  = sentence[1]
                     if "->" in textout:
                         sentence = textout.split("->")
                         specsout = sentence[0]
                         textout  = sentence[1]
+
+                    """if buffer[1] == textin:
+                        buffer[0] += 1
+                        buffer[1] = textin
+                        textin = str(buffer[0]) + textin
+                        
+                    else:
+                        buffer[0] = 0
+                        buffer[1] = textin
+                        textin = str(0) + textin"""
 
                     all_specsin  += specsin + "\n"
                     all_textin   += textin + "\n"
@@ -111,5 +121,3 @@ class Compilation:
                 with open(dirpath + fname, "w") as f:
                     # without final \n
                     f.write(allregex[:-1])
-
-

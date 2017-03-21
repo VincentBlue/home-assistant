@@ -116,7 +116,8 @@ class Initialisation:
                             line = line[:-1]
                         # Wanted : unique question --> key to look for
                         if state == self.config.textin_part:
-                            self.words.textin[line] = fname + "-" + str(i)
+                            cpt = self.check_key_existence(self.words.textin, line, 0)
+                            self.words.textin[str(cpt) + line] = fname + "-" + str(i)
                         elif state == self.config.specsin_part:
                             self.words.specsin[fname + "-" + str(i)] = line
                         elif state == self.config.specsout_part:
@@ -127,3 +128,9 @@ class Initialisation:
                     #print(self.words.specsin)
                     #print("##############################")
                     #self.words.specsin.extend
+                    #print (self.words.textin)
+
+    def check_key_existence(self, dict, key, cpt):
+        if str(cpt) + key in dict:
+            cpt = self.check_key_existence(dict, key, cpt+1)
+        return cpt
