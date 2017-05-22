@@ -15,4 +15,4 @@ all->[status:cool;angrymode:off]{date:12}=[status:sleep;count:3]{call:truc;funct
 hello=yeah
 hello=yolo
 hello=posey
-pattern->[spec1:value;spec2:value]{func1(args):value;func2(args):value}pattern=[spec1:value;spec2:value]{func1(args);func2(args)}->pattern1[spec]|pattern2{func(args)}
+pattern->[spec1:value;spec2:value]{func1(args):value;func2(args):value}=[spec1:value;spec2:value]{func1(args);func2(args)}->pattern1[spec]|pattern2{func(args)}

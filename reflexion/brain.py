@@ -86,7 +86,7 @@ class Brain:
                     else:
                         self.log.debug("Found \"" + a[0] + "\" -> " + a[1])
             
-            xgd #do it for func !!
+            #do it for func !!
 
 
 
@@ -99,7 +99,7 @@ class Brain:
         # Convert to lowercase
         text = text.lower()
         # Tokenize
-        text = nltk.word_tokenize(text)
+        text = nltk.word_tokenize(text, "french")
         # Remove french stop words
         from nltk.corpus import stopwords
         stopwords = set(stopwords.words("french"))

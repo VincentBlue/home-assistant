@@ -30,6 +30,8 @@ class Compilation:
 
                 buffer = [0, None]
                 for sentence in content:
+                    if sentence[0] == "#":
+                        pass
                     sentence = sentence[:-1]
                     specsin  = ""
                     specsout = ""
