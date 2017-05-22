@@ -4,6 +4,7 @@
 import nltk.data
 from nltk.corpus import stopwords
 import re 
+import random
 
 class Brain:
 
@@ -25,40 +26,63 @@ class Brain:
         self.log.debug("refactored = " + refactored_input)
 
         #print(self.words.textin)
-        key = None
+        self.key = None
         for item in self.words.textin:
-            #print(key[:1])
+            #print(self.key[:1])
             m = re.search(item[1:], refactored_input)
             if m is not None:
                 self.log.debug("Key = " + self.words.textin[item])
-                key = self.words.textin[item]
+                self.key = self.words.textin[item]
                 break
                 # TODO: Chef if next entries have the same pattern
         else:
             self.log.warning("Unknown response")
-            key = self.words.textin["000NOTFOUND"]
+            self.key = self.words.textin["000NOTFOUND"]
 
-        self.check_dicts(key)
-        self.parse_specs(self.words.specsin[key])
+        self.check_dicts()
+        self.parse_specs(self.words.specsin[self.key])
 
         self.check_attrs_funcs()
 
-        #self.parse_specs(self.words.specsout[key])
+        self.set_answer(conversation)
+
+        #self.parse_specs(self.words.specsout[self.key])
 
 
-    def check_dicts(self, key):
+    def nltk_parse(self, text):
 
-        if not self.words.specsin[key]:
+        # Update the input text to simplify it
+
+        # Remove non letters
+        text = re.sub("[^a-zA-Z?]", " ", text)
+        # Convert to lowercase
+        text = text.lower()
+        # Tokenize
+        text = nltk.word_tokenize(text, "french")
+        # Remove french stop words
+        from nltk.corpus import stopwords
+        stopwords = set(stopwords.words("french"))
+        text = [word for word in text if word not in stopwords]
+
+        textstr = " "
+        textstr = textstr.join(text)
+        self.log.debug(textstr)
+        return textstr
+
+
+    def check_dicts(self):
+
+        if not self.words.specsin[self.key]:
             self.log.debug("No specsin required")
-        else: self.log.debug(self.words.specsin[key])
+        else: self.log.debug(self.words.specsin[self.key])
 
-        if not self.words.specsout[key]:
+        if not self.words.specsout[self.key]:
             self.log.debug("No specsout specified")
-        else: self.log.debug(self.words.specsout[key])
+        else: self.log.debug(self.words.specsout[self.key])
 
-        if not self.words.textout[key]:
+        if not self.words.textout[self.key]:
             self.log.debug("No textout specified")
-        else: self.log.debug(self.words.textout[key])
+        else: self.log.debug(self.words.textout[self.key])
 
 
     def parse_specs(self, specs):
@@ -89,23 +113,18 @@ class Brain:
             #do it for func !!
 
 
+    def set_answer(self, conversation):
 
-    def nltk_parse(self, text):
-        
-        # Update the input text to simplify it
+        all_answers = self.words.textout[self.key].split("|")
+        answer = random.choice(all_answers)
+        # the last char is a \n
+        answer =answer.rstrip('\n')
+        self.log.debug(answer)
 
-        # Remove non letters
-        text = re.sub("[^a-zA-Z?]", " ", text)
-        # Convert to lowercase
-        text = text.lower()
-        # Tokenize
-        text = nltk.word_tokenize(text, "french")
-        # Remove french stop words
-        from nltk.corpus import stopwords
-        stopwords = set(stopwords.words("french"))
-        text = [word for word in text if word not in stopwords]
-
-        textstr = " "
-        textstr = textstr.join(text)
-        self.log.debug(textstr)
-        return textstr
+        if "#" in answer:
+            splitter = answer.split("#")
+            conversation["speak"] = splitter[0]
+            conversation["write"] = splitter[1]
+        else:
+            conversation["speak"] = answer
+            conversation["write"] = answer

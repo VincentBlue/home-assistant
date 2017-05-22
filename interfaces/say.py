@@ -34,8 +34,8 @@ class Say:
             text_written = conversation["write"]
 
         # user interface
-        print(text_written)
         self.log.info(text_written)
+        print(text_written)
 
         if self.vocal_synthesis is True:
             self.log.info(self.text_spoken)
