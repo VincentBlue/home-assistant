@@ -32,7 +32,7 @@ class Configuration:
         #print ("Engine version: " + engine_version + "\n\n")
         self.loglevel = config["DEFAULT"]["log_level"]
 
-
+        self.ask_answer = config["Interfaces"].getboolean("ask_answer")
         self.vocal_recognition = config["Interfaces"].getboolean("vocal_recognition")
         self.vocal_synthesis = config["Interfaces"].getboolean("vocal_synthesis")
 
